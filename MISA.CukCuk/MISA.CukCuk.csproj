@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>a70423cf-fbeb-4af4-bf9e-886d6b57821f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\CODEOWNERS" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\ISSUE_TEMPLATE\bug.md" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\ISSUE_TEMPLATE\bug_report.md" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\ISSUE_TEMPLATE\feature.md" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\ISSUE_TEMPLATE\feature_request.md" />
+    <None Include="wwwroot\Style\content\vendors\bootstrap-4.3.1\.github\SUPPORT.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+
+</Project>

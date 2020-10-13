@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.csproj": {}
+    "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj": {}
   },
   "projects": {
-    "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.csproj": {
+    "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.csproj",
+        "projectUniqueName": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
         "projectName": "MISA.CukCuk",
-        "projectPath": "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.csproj",
+        "projectPath": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
         "packagesPath": "C:\\Users\\phonghop.RD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\obj\\",
+        "outputPath": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\phonghop.RD\\AppData\\Roaming\\NuGet\\NuGet.Config",

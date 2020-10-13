@@ -27,8 +27,8 @@ namespace MISA.CukCuk.Api
             mySqlConnection.Open();
             // Đối tượng xử lý command:
             MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
-            mySqlCommand.CommandType = System.Data.CommandType.Text;
-            mySqlCommand.CommandText = "SELECT * FROM Employee";
+            mySqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            mySqlCommand.CommandText = "Proc_GetEmployees";
             // Thực hiện đọc dữ liệu:
             MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())

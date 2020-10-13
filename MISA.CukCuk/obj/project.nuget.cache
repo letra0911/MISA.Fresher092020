@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FxiaoD3tRPAuz84EKD5i5LulcCqOXK9p9qiu8I5447jeshqM6kpuvlbrdoqfhTvXT3Hhwsidq0lZp7H/iGurYw==",
+  "dgSpecHash": "EK0SH4RGeiRfG+VpOJj9SitZGzqrzjoXi33lSubmimpKh1hLduu2akFOlbGz5ti8abW1++P/i3KzStwl+Otv7A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\phonghop.RD\\source\\repos\\MISA.CukCuk\\MISA.CukCuk\\MISA.CukCuk.csproj",
+  "projectFilePath": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\phonghop.RD\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\phonghop.RD\\.nuget\\packages\\google.protobuf\\3.6.1\\google.protobuf.3.6.1.nupkg.sha512",

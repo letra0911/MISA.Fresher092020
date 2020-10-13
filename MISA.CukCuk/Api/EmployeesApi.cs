@@ -60,18 +60,69 @@ namespace MISA.CukCuk.Api
             return employees;
         }
 
-        // GET api/<EmployeesApi>/5
+        /// <summary>
+        /// Lấy thông tin nhân viên theo Id
+        /// </summary>
+        /// <param name="id">Id của nhân viên</param>
+        /// <returns></returns>
+        /// CreatedBy: NVMANH (13/10/2020)
         [HttpGet("{id}")]
-        public string Get([FromRoute]int id, [FromQuery] string name, [FromHeader]string abc)
+        public Employee Get([FromRoute]Guid id)
         {
-            return abc;
+            var connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.166.58;Port=3306;Database=MISACukCuk_F09_NVMANH;Character Set=utf8";
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+            MySqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlCommand.CommandText = "Proc_GetEmployeeById";
+            sqlCommand.Parameters.AddWithValue("@EmployeeId", id);
+            sqlConnection.Open();
+            MySqlDataReader mySqlDataReader =  sqlCommand.ExecuteReader();
+            while (mySqlDataReader.Read())
+            {
+                var employee = new Employee();
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = employee.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(employee, value);
+                }
+                return employee;
+            }
+            sqlConnection.Close();
+            return null;
         }
 
         // POST api/<EmployeesApi>
         [HttpPost]
-        public Customer Post([FromBody] Customer customer)
+        public int Post([FromBody] Employee employee)
         {
-            return customer;
+            var connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.166.58;Port=3306;Database=MISACukCuk_F09_NVMANH;Character Set=utf8";
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+            MySqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlCommand.CommandText = "Proc_InsertEmployee";
+            sqlCommand.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
+            sqlCommand.Parameters.AddWithValue("@EmployeeCode", employee.EmployeeCode);
+            sqlCommand.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
+            sqlCommand.Parameters.AddWithValue("@DateOfBirth", employee.DateOfBirth);
+            sqlCommand.Parameters.AddWithValue("@Gender", employee.Gender);
+            sqlCommand.Parameters.AddWithValue("@Email", employee.Email);
+            sqlCommand.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
+            sqlCommand.Parameters.AddWithValue("@IdentityDate", employee.IdentityDate);
+            sqlCommand.Parameters.AddWithValue("@IdentityNumber", employee.IdentityNumber);
+            sqlCommand.Parameters.AddWithValue("@IdentityPlace", employee.IdentityPlace);
+            sqlCommand.Parameters.AddWithValue("@PossitionId", employee.PossitionId);
+            sqlCommand.Parameters.AddWithValue("@DepartmentId", employee.DepartmentId);
+            sqlCommand.Parameters.AddWithValue("@Salary", employee.Salary);
+            sqlCommand.Parameters.AddWithValue("@TaxCode", employee.TaxCode);
+            sqlCommand.Parameters.AddWithValue("@JoinDate", employee.JoinDate);
+            sqlCommand.Parameters.AddWithValue("@WorkStatus", employee.WorkStatus);
+            sqlConnection.Open();
+            var affectRows= sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+            return affectRows;
         }
 
         // PUT api/<EmployeesApi>/5

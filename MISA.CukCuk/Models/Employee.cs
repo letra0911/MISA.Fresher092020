@@ -45,6 +45,7 @@ namespace MISA.CukCuk.Models
         public Guid? DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public string TaxCode { get; set; }
+        public double? Salary { get; set; }
         public DateTime? JoinDate { get; set; }
         public int? WorkStatus { get; set; }
         public string WorkStatusName
@@ -53,8 +54,6 @@ namespace MISA.CukCuk.Models
             {
                 if (WorkStatus == null)
                     return string.Empty;
-
-                var resource = Resources.ResourceManager.GetObject("ResourcesVN");
                 switch ((WorkStatus)WorkStatus)
                 {
                     case Models.WorkStatus.Stopped:
@@ -68,6 +67,10 @@ namespace MISA.CukCuk.Models
                 }
             }
         }
+
+        public string IdentityNumber { get; set; }
+        public DateTime? IdentityDate { get; set; }
+        public string IdentityPlace { get; set; }
 
     }
 }

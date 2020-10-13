@@ -6023,19 +6023,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\phonghop.RD\\.nuget\\packages\\": {}
+    "C:\\Users\\nvmanh\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
+      "projectUniqueName": "D:\\PRIVATE\\GitHub\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
       "projectName": "MISA.CukCuk",
-      "projectPath": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
-      "packagesPath": "C:\\Users\\phonghop.RD\\.nuget\\packages\\",
-      "outputPath": "C:\\DEVELOP\\GitHub\\Fresher09\\MISA.Fresher092020\\MISA.CukCuk\\obj\\",
+      "projectPath": "D:\\PRIVATE\\GitHub\\MISA.Fresher092020\\MISA.CukCuk\\MISA.CukCuk.csproj",
+      "packagesPath": "C:\\Users\\nvmanh\\.nuget\\packages\\",
+      "outputPath": "D:\\PRIVATE\\GitHub\\MISA.Fresher092020\\MISA.CukCuk\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\phonghop.RD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nvmanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

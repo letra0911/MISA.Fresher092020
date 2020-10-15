@@ -7,45 +7,40 @@ using System.Text;
 
 namespace MISA.Bussiness.Service
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
         IEmployeeRepository _employeeRepository;
-        public EmployeeService()
-        {
-
-        }
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository):base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
+
         public bool CheckEmployeeByCode(string employeeCode)
         {
-            throw new NotImplementedException();
+            return _employeeRepository.CheckEmployeeByCode(employeeCode);
         }
 
-        public int Delete(Guid id)
+        protected override bool Validate(Employee entity)
         {
-            throw new NotImplementedException();
+            var isValid = true;
+            // Check trùng mã:
+            var isValidExitsCode =  CheckEmployeeByCode(entity.EmployeeCode);
+            if (isValidExitsCode)
+            {
+                isValid = false;
+                validateErrorResponseMsg.Add("Mã bị trùng 1");
+            }
+
+            // Check trùng số chứng minh thư:
+            var isValidExitsMobile = CheckEmployeeByCode(entity.EmployeeCode);
+            if (isValidExitsMobile)
+            {
+                isValid = false;
+                validateErrorResponseMsg.Add("Bị trùng số điện thoại");
+            }
+            
+            return isValid;
         }
 
-        public IEnumerable<Employee> Get()
-        {
-            return _employeeRepository.Get();
-        }
-
-        public Employee GetById(Guid employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Insert(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

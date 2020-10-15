@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.Bussiness.Interfaces
+namespace MISA.DataAccess.Interfaces
 {
-    public interface IBaseBussiness<T>
+    public interface IBaseRepository<T>
     {
         /// <summary>
-        /// Lấy danh sách
+        /// Lấy dữ liệu
         /// </summary>
         /// <returns></returns>
-        /// CreatedBy: NVMANH (14/10/2020)
+        /// CreatedBy: NVMANH (15/10/2020)
         IEnumerable<T> Get();
         T GetById(Guid employeeId);
         int Insert(T employee);

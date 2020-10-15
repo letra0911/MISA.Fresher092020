@@ -111,5 +111,15 @@ namespace MISA.DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Employee> Get(string storeName, string code)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IDatabaseContext<Employee>.Get(string storeName, string code)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

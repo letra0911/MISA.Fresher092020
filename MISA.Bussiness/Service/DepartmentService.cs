@@ -7,17 +7,11 @@ using System.Text;
 
 namespace MISA.Bussiness.Service
 {
-    public class DepartmentService : IDepartmentService
+    public class DepartmentService : BaseService<Department>
     {
-        private IDepartmentRepository _departmentRepository;
-        public DepartmentService(IDepartmentRepository departmentRepository)
+        public DepartmentService(IDepartmentRepository departmentRepository):base(departmentRepository)
         {
-            _departmentRepository = departmentRepository;
         }
-
-        public IEnumerable<Department> Get()
-        {
-            return _departmentRepository.Get();
-        }
+       
     }
 }

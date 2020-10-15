@@ -18,8 +18,10 @@ namespace MISA.CukCuk
         {
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<IDepartmentService, DepartmentService>();
+            //services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IDatabaseContext<>), typeof(DatabaseContext<>));
         }
         

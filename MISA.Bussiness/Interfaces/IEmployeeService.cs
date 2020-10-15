@@ -5,18 +5,8 @@ using System.Text;
 
 namespace MISA.Bussiness.Interfaces
 {
-    public interface IEmployeeService
+    public interface IEmployeeService:IBaseService<Employee>
     {
-        /// <summary>
-        /// Lấy dữ liệu
-        /// </summary>
-        /// <returns></returns>
-        /// CreatedBy: NVMANH (15/10/2020)
-        IEnumerable<Employee> Get();
-        Employee GetById(Guid employeeId);
-        int Insert(Employee employee);
-        int Update(Employee employee);
-        int Delete(Guid id);
 
         /// <summary>
         /// Kiểm tra thông tin nhân viên theo mã

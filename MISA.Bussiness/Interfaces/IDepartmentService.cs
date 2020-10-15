@@ -5,13 +5,7 @@ using System.Text;
 
 namespace MISA.Bussiness.Interfaces
 {
-    public interface IDepartmentService
+    public interface IDepartmentService:IBaseService<Department>
     {
-        /// <summary>
-        /// Lấy dữ liệu
-        /// </summary>
-        /// <returns></returns>
-        /// CreatedBy: NVMANH (15/10/2020)
-        IEnumerable<Department> Get();
     }
 }

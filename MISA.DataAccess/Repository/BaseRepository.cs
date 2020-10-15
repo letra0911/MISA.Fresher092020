@@ -5,21 +5,17 @@ using System.Text;
 
 namespace MISA.DataAccess.Repository
 {
-    public class BaseRepository<T>
+    public class BaseRepository<T>: IBaseRepository<T>
     {
-        IDatabaseContext<T> _databaseContext;
+        protected IDatabaseContext<T> _databaseContext;
         public BaseRepository(IDatabaseContext<T> databaseContext)
         {
             _databaseContext = databaseContext;
         }
-        public bool CheckEmployeeByCode(string employeeCode)
-        {
-            throw new NotImplementedException();
-        }
 
         public int Delete(Guid id)
         {
-            throw new NotImplementedException();
+            return _databaseContext.Delete(id);
         }
 
         public IEnumerable<T> Get()
@@ -27,19 +23,19 @@ namespace MISA.DataAccess.Repository
             return _databaseContext.Get();
         }
 
-        public T GetById(Guid employeeId)
+        public T GetById(Guid objectId)
         {
-            throw new NotImplementedException();
+            return _databaseContext.GetById(objectId);
         }
 
-        public int Insert(T employee)
+        public int Insert(T entity)
         {
-            throw new NotImplementedException();
+            return _databaseContext.Insert(entity);
         }
 
-        public int Update(T employee)
+        public int Update(T entity)
         {
-            throw new NotImplementedException();
+            return _databaseContext.Update(entity);
         }
     }
 }

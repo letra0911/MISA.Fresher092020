@@ -22,9 +22,9 @@ namespace MISA.CukCuk.Api
         [HttpGet]
         public IActionResult Get()
         {
-            var departments = _departmentService.Get();
-            if (departments.Count() > 0)
-                return Ok(departments);
+            var rs = _departmentService.Get();
+            if (rs != null)
+                return Ok(rs);
             else
                 return NoContent();
         }

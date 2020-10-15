@@ -8,6 +8,7 @@ using System.Net.WebSockets;
 using MISA.DataAccess.Interfaces;
 using MISA.Common.Models;
 using MISA.Bussiness.Interfaces;
+using MISA.Bussiness.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,17 +18,17 @@ namespace MISA.CukCuk.Api
     [ApiController]
     public class EmployeesApi : ControllerBase
     {
-        IEmployeeBussiness _employeeBussiness;
+        IEmployeeService _employeeService;
 
-        public EmployeesApi(IEmployeeBussiness employeeBussiness)
+        public EmployeesApi(IEmployeeService employeeService)
         {
-            _employeeBussiness = employeeBussiness;
+            _employeeService = employeeService;
         }
         // GET: api/<EmployeesApi>
         [HttpGet]
         public IActionResult Get()
         {
-            var employees = _employeeBussiness.Get();
+            var employees = _employeeService.Get();
             if (employees.Count() > 0)
                 return Ok(employees);
             else
@@ -43,7 +44,7 @@ namespace MISA.CukCuk.Api
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] Guid id)
         {
-            var employee = _employeeBussiness.GetById(id);
+            var employee = _employeeService.GetById(id);
             if (employee!=null)
                 return Ok(employee);
             else
@@ -54,7 +55,7 @@ namespace MISA.CukCuk.Api
         [HttpPost]
         public IActionResult Post([FromBody] Employee employee)
         {
-            var affectRows = _employeeBussiness.Insert(employee);
+            var affectRows = _employeeService.Insert(employee);
             if (affectRows > 0)
                 return CreatedAtAction("POST",affectRows);
             else

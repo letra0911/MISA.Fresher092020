@@ -31,12 +31,7 @@ namespace MISA.CukCuk
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped(typeof(IDatabaseAccess<>), typeof(DatabaseMariaDbAccess<>));
-            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            services.AddScoped<IEmployeeBussiness, EmployeeService2>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IDepartmentService, DepartmentService>();
-            //services.AddScoped<IDatabaseAccess, DatabaseSqlServerAccess>();
+            DIConfig.InjectionConfig(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

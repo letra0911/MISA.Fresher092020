@@ -9,34 +9,15 @@ namespace MISA.Bussiness.Service
 {
     public class DepartmentService : IDepartmentService
     {
-        IDatabaseAccess<Department> _databaseAccess;
-        public DepartmentService(IDatabaseAccess<Department> databaseAccess)
+        private IDepartmentRepository _departmentRepository;
+        public DepartmentService(IDepartmentRepository departmentRepository)
         {
-            _databaseAccess = databaseAccess;
-        }
-        public int Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Department GetById(Guid employeeId)
-        {
-            throw new NotImplementedException();
+            _departmentRepository = departmentRepository;
         }
 
         public IEnumerable<Department> Get()
         {
-            return _databaseAccess.Get();
-        }
-
-        public int Insert(Department employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update(Department employee)
-        {
-            throw new NotImplementedException();
+            return _departmentRepository.Get();
         }
     }
 }

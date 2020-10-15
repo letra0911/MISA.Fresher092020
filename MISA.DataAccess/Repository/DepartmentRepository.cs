@@ -6,7 +6,10 @@ using System.Text;
 
 namespace MISA.DataAccess.Repository
 {
-    public class DepartmentRepository:DatabaseMariaDbAccess<Department>, IDepartmentRepository
+    public class DepartmentRepository : BaseRepository<Department>, IDepartmentRepository
     {
+        public DepartmentRepository(IDatabaseContext<Department> databaseContext):base(databaseContext)
+        {
+        }
     }
 }

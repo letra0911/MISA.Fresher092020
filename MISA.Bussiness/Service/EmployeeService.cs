@@ -7,36 +7,45 @@ using System.Text;
 
 namespace MISA.Bussiness.Service
 {
-    public class EmployeeService : IEmployeeBussiness
+    public class EmployeeService : IEmployeeService
     {
-        IDatabaseAccess<Employee> _databaseAccess;
-        public EmployeeService(IDatabaseAccess<Employee> databaseAccess)
+        IEmployeeRepository _employeeRepository;
+        public EmployeeService()
         {
-            _databaseAccess = databaseAccess;
+
         }
-        public int Delete(Guid id)
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
-            return _databaseAccess.Delete(id);
+            _employeeRepository = employeeRepository;
+        }
+        public bool CheckEmployeeByCode(string employeeCode)
+        {
+            throw new NotImplementedException();
         }
 
-        public Employee GetById(Guid employeeId)
+        public int Delete(Guid id)
         {
-            return _databaseAccess.GetById(employeeId);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Employee> Get()
         {
-            return _databaseAccess.Get();
+            return _employeeRepository.Get();
+        }
+
+        public Employee GetById(Guid employeeId)
+        {
+            throw new NotImplementedException();
         }
 
         public int Insert(Employee employee)
         {
-            return _databaseAccess.Insert(employee);
+            throw new NotImplementedException();
         }
 
         public int Update(Employee employee)
         {
-            return _databaseAccess.Update(employee);
+            throw new NotImplementedException();
         }
     }
 }

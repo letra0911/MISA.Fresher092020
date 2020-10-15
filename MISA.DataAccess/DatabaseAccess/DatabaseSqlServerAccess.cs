@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MISA.DataAccess
 {
      
-    public class DatabaseSqlServerAccess : IDatabaseAccess<Employee>
+    public class DatabaseSqlServerAccess : IDatabaseContext<Employee>
     {
         readonly string _connectionString = "Data Source=35.194.166.58;Initial Catalog=MISACukCuk_F09;User ID=sa;Password=12345678@Abc";
         SqlConnection _sqlConnection;
@@ -103,6 +103,11 @@ namespace MISA.DataAccess
         }
 
         public int Update(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Employee> Get(string storeName)
         {
             throw new NotImplementedException();
         }

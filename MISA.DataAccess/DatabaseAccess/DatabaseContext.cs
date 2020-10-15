@@ -3,17 +3,16 @@ using MISA.DataAccess.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MISA.DataAccess
+namespace MISA.DataAccess.DatabaseAccess
 {
-    public class DatabaseMariaDbAccess<T>:IDisposable, IDatabaseAccess<T>
+    public class DatabaseContext<T>: IDisposable,IDatabaseContext<T>
     {
         readonly string _connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.166.58;Port=3306;Database=MISACukCuk_F09_NVMANH;Character Set=utf8";
         MySqlConnection _sqlConnection;
         MySqlCommand _sqlCommand;
-        public DatabaseMariaDbAccess()
+        public DatabaseContext()
         {
             // Khởi tạo kết nối:
             _sqlConnection = new MySqlConnection(_connectionString);
@@ -23,15 +22,37 @@ namespace MISA.DataAccess
             _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
         }
 
-        /// <summary>
-        /// Lấy dữ liệu
-        /// </summary>
-        /// <returns></returns>
-        /// CreatedBy: NVMANH (14/10/2020)
+        public int Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetById(Guid employeeId)
+        {
+            _sqlCommand.CommandText = "Proc_GetEmployeeById";
+            _sqlCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            while (mySqlDataReader.Read())
+            {
+                var employee = Activator.CreateInstance<T>();
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = employee.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(employee, value);
+                }
+                return employee;
+            }
+            return default;
+        }
+
         public IEnumerable<T> Get()
         {
             var employees = new List<T>();
-            _sqlCommand.CommandText = "Proc_GetEmployees";
+            var className = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{className}s";
             // Thực hiện đọc dữ liệu:
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())
@@ -57,44 +78,9 @@ namespace MISA.DataAccess
             return employees;
         }
 
-        /// <summary>
-        /// Lấy thông tin nhân viên theo mã nhân viên
-        /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns></returns>
-        /// CreatedBy: NVMANH (14/10/2020)
-        public T GetById(Guid entityId)
+        public int Insert(T entity)
         {
-            _sqlCommand.CommandText = "Proc_GetEmployeeById";
-            _sqlCommand.Parameters.AddWithValue("@EmployeeId", entityId);
-            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
-            while (mySqlDataReader.Read())
-            {
-                var entity = Activator.CreateInstance<T>();
-                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
-                {
-                    var columnName = mySqlDataReader.GetName(i);
-                    var value = mySqlDataReader.GetValue(i);
-                    var propertyInfo = entity.GetType().GetProperty(columnName);
-                    if (propertyInfo != null && value != DBNull.Value)
-                        propertyInfo.SetValue(entity, value);
-                }
-                return entity;
-            }
-            return default;
-        }
-
-
-        /// <summary>
-        /// Thêm mới
-        /// </summary>
-        /// <param name="employee"></param>
-        /// <returns></returns>
-        /// CreatedBy: NVMANH (14/10/2020)
-        public int Insert(T employeeParam)
-        { 
-            var employee = employeeParam as Employee;
-            _sqlCommand.Parameters.Clear();
+            var employee = entity as Employee;
             _sqlCommand.CommandText = "Proc_InsertEmployee";
             _sqlCommand.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
             _sqlCommand.Parameters.AddWithValue("@EmployeeCode", employee.EmployeeCode);
@@ -118,12 +104,7 @@ namespace MISA.DataAccess
 
         public int Update(T employee)
         {
-            return 0;
-        }
-
-        public int Delete(Guid employeeId)
-        {
-            return 0;
+            throw new NotImplementedException();
         }
 
         public void Dispose()
@@ -131,14 +112,33 @@ namespace MISA.DataAccess
             _sqlConnection.Close();
         }
 
-        public bool CheckEmployeeByCode(string employeeCode)
+        public IEnumerable<T> Get(string storeName)
         {
-            _sqlCommand.CommandText = "Proc_GetEmployeeByCode";
-            _sqlCommand.Parameters.AddWithValue("@EmployeeCode", employeeCode);
-            var mySqlDataValue = _sqlCommand.ExecuteScalar();
-            if (mySqlDataValue == null)
-                return false;
-            return true;
+            var employees = new List<T>();
+            _sqlCommand.CommandText = storeName;
+            // Thực hiện đọc dữ liệu:
+            MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
+            while (mySqlDataReader.Read())
+            {
+                var employee = Activator.CreateInstance<T>();
+                //employee.EmployeeId = mySqlDataReader.GetGuid(0);
+                //employee.EmployeeCode = mySqlDataReader.GetString(1);
+                //employee.FullName = mySqlDataReader.GetString(2);
+
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    var columnName = mySqlDataReader.GetName(i);
+                    var value = mySqlDataReader.GetValue(i);
+                    var propertyInfo = employee.GetType().GetProperty(columnName);
+                    if (propertyInfo != null && value != DBNull.Value)
+                        propertyInfo.SetValue(employee, value);
+                }
+                employees.Add(employee);
+            }
+            // 1. Kết nối với Database:
+            // 2. Thực thi command lấy dữ liệu:
+            // Trả về:
+            return employees;
         }
     }
 }

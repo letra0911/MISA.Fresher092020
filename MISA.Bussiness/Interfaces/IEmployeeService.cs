@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.DataAccess.Interfaces
+namespace MISA.Bussiness.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeService
     {
         /// <summary>
         /// Lấy dữ liệu

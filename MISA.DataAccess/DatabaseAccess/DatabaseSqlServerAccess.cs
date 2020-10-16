@@ -121,5 +121,15 @@ namespace MISA.DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public Employee GetById(object employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete(object id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

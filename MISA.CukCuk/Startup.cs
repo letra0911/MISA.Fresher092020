@@ -15,6 +15,7 @@ using MISA.Bussiness.Service;
 using MISA.DataAccess;
 using MISA.DataAccess.Interfaces;
 using MISA.DataAccess.Repository;
+using Newtonsoft.Json.Serialization;
 
 namespace MISA.CukCuk
 {
@@ -30,7 +31,11 @@ namespace MISA.CukCuk
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                }); ;
             DIConfig.InjectionConfig(services);
         }
 

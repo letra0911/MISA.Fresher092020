@@ -51,29 +51,47 @@ class BaseJS {
     //TODO: cần sửa lại
     loadData() {
         try {
+            var self = this;
             // Đọc thông tin các cột dữ liệu:
             var fields = $('table#tbListData thead th');
             var keyId = $('table#tbListData').attr('keyId');
-            console.log(fields);
+            var data;
             // Lấy dữ liệu:
-            var data = this.Data;
-            var self = this;
-            // Đọc dữ liệu:
-            //$("#tbListData tbody").empty();
-            $.each(data, function (index, obj) {
-                var tr = $(`<tr></tr>`);
-                $.each(fields, function (index, field) {
-                    var fieldName = $(field).attr('fieldName');
-                    var value = obj[fieldName];
-                    var td = $(`<td>` + value + `</td>`);
-                    $(tr).data('keyid', obj[keyId]);
-                    $(tr).data('data', obj);
-                    $(tr).append(td);
-                })
-                // Binding dữ liệu lên UI:
-                //var trHTML = self.makeTrHTML(obj);
-                $("#tbListData tbody").append(tr);
-            })
+            $.ajax({
+                method: "GET",
+                url: "/api/employees",
+                contentType: "application/json",
+                async:true
+            }).done(function (res) {
+                if (res) {
+                    data = res;
+                    // Đọc dữ liệu:
+                    //$("#tbListData tbody").empty();
+                    $.each(data, function (index, obj) {
+                        var tr = $(`<tr></tr>`);
+                        $.each(fields, function (index, field) {
+                            var fieldName = $(field).attr('fieldName');
+                            var value = obj[fieldName];
+                            var format = $(field).attr('format');
+                            if (format == "date" && value) {
+                                value = new Date(value);
+                                value = commonJS.getDateStringYYYYMMdd(value);
+                            }
+                            var td = $(`<td>` + value + `</td>`);
+                            $(tr).data('keyid', obj[keyId]);
+                            $(tr).data('data', obj);
+                            $(tr).append(td);
+                        })
+                        // Binding dữ liệu lên UI:
+                        //var trHTML = self.makeTrHTML(obj);
+                        $("#tbListData tbody").append(tr);
+                    })
+                }
+            }).fail(function (res) {
+
+            });
+
+            
         } catch (e) {
         }
     }
@@ -168,7 +186,16 @@ class BaseJS {
             //TODO: đang fix dữ liệu dưới client
             if (self.FormMode == 'Add') {
                 alert('add');
-                data.push(customer);
+                $.ajax({
+                    method: "POST",
+                    url: "/api/employees",
+                    data: customer,
+                    contentType: "application/json"
+                }).done(function (res) {
+                    self.loadData();
+                }).fail(function (res) {
+
+                })
             } else {
                 alert('edit');
             }

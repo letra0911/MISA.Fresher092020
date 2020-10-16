@@ -10,9 +10,9 @@ namespace MISA.DataAccess.Interfaces
         IEnumerable<T> Get();
         IEnumerable<T> Get(string storeName);
         object Get(string storeName, string code);
-        T GetById(Guid employeeId);
+        T GetById(object employeeId);
         int Insert(T employee);
         int Update(T employee);
-        int Delete(Guid id);
+        int Delete(object id);
     }
 }

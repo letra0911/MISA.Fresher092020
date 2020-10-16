@@ -112,8 +112,6 @@ D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.Cu
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.csproj.GenerateResource.cache
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.AssemblyInfoInputs.cache
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.AssemblyInfo.cs
-D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.csproj.CoreCompileInputs.cache
-D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.MvcApplicationPartsAssemblyInfo.cache
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.RazorTargetAssemblyInfo.cache
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.csproj.CopyComplete
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\staticwebassets\MISA.CukCuk.StaticWebAssets.Manifest.cache
@@ -121,3 +119,9 @@ D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\staticw
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.dll
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.pdb
 D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.genruntimeconfig.cache
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.csproj.CoreCompileInputs.cache
+D:\PRIVATE\GitHub\MISA.Fresher092020\MISA.CukCuk\obj\Debug\netcoreapp3.1\MISA.CukCuk.MvcApplicationPartsAssemblyInfo.cache

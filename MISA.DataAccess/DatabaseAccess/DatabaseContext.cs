@@ -3,15 +3,20 @@ using MISA.DataAccess.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.DataAccess.DatabaseAccess
 {
-    public class DatabaseContext<T>: IDisposable,IDatabaseContext<T>
+    public class DatabaseContext<T> : IDisposable, IDatabaseContext<T>
     {
+        #region DECLARE
         readonly string _connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.166.58;Port=3306;Database=MISACukCuk_F09_NVMANH;Character Set=utf8";
         MySqlConnection _sqlConnection;
         MySqlCommand _sqlCommand;
+        #endregion
+
+        #region CONSTRUCTOR
         public DatabaseContext()
         {
             // Khởi tạo kết nối:
@@ -21,13 +26,25 @@ namespace MISA.DataAccess.DatabaseAccess
             _sqlCommand = _sqlConnection.CreateCommand();
             _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
         }
+        #endregion
 
-        public int Delete(Guid id)
+        #region METHOD
+        public int Delete(object id)
         {
-            throw new NotImplementedException();
+            var entityName = typeof(T).Name;
+            _sqlCommand.Parameters.Clear();
+            _sqlCommand.CommandText = $"Proc_Delete{entityName}ById";
+            //_sqlCommand.Parameters.AddWithValue($"@{entityName}Id", id);
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            if (_sqlCommand.Parameters.Count > 0)
+            {
+                _sqlCommand.Parameters[0].Value = id;
+            }
+            var affectRows = _sqlCommand.ExecuteNonQuery();
+            return affectRows;
         }
 
-        public T GetById(Guid employeeId)
+        public T GetById(object employeeId)
         {
             _sqlCommand.CommandText = "Proc_GetEmployeeById";
             _sqlCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
@@ -80,25 +97,33 @@ namespace MISA.DataAccess.DatabaseAccess
 
         public int Insert(T entity)
         {
+            var entityName = typeof(T).Name;
             _sqlCommand.Parameters.Clear();
-            var employee = entity as Employee;
-            _sqlCommand.CommandText = "Proc_InsertEmployee";
-            _sqlCommand.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
-            _sqlCommand.Parameters.AddWithValue("@EmployeeCode", employee.EmployeeCode);
-            _sqlCommand.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
-            _sqlCommand.Parameters.AddWithValue("@DateOfBirth", employee.DateOfBirth);
-            _sqlCommand.Parameters.AddWithValue("@Gender", employee.Gender);
-            _sqlCommand.Parameters.AddWithValue("@Email", employee.Email);
-            _sqlCommand.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
-            _sqlCommand.Parameters.AddWithValue("@IdentityDate", employee.IdentityDate);
-            _sqlCommand.Parameters.AddWithValue("@IdentityNumber", employee.IdentityNumber);
-            _sqlCommand.Parameters.AddWithValue("@IdentityPlace", employee.IdentityPlace);
-            _sqlCommand.Parameters.AddWithValue("@PossitionId", employee.PossitionId);
-            _sqlCommand.Parameters.AddWithValue("@DepartmentId", employee.DepartmentId);
-            _sqlCommand.Parameters.AddWithValue("@Salary", employee.Salary);
-            _sqlCommand.Parameters.AddWithValue("@TaxCode", employee.TaxCode);
-            _sqlCommand.Parameters.AddWithValue("@JoinDate", employee.JoinDate);
-            _sqlCommand.Parameters.AddWithValue("@WorkStatus", employee.WorkStatus);
+            _sqlCommand.CommandText = $"Proc_Insert{entityName}";
+            MySqlCommandBuilder.DeriveParameters(_sqlCommand);
+            var parameters = _sqlCommand.Parameters;
+            var properties = typeof(T).GetProperties();
+            // Cách 1:
+            //foreach (var property in properties)
+            //{
+            //    var propertyName = property.Name;
+            //    var propertyValue = property.GetValue(entity);
+            //    foreach (MySqlParameter param in parameters)
+            //    {
+            //        var paramName = param.ParameterName;
+            //        if (paramName == $"@{propertyName}")
+            //            param.Value = propertyValue;
+            //    }
+            //}
+
+            // Cách 2:
+            foreach (MySqlParameter param in parameters)
+            {
+                var paramName = param.ParameterName.Replace("@", string.Empty);
+                var property = entity.GetType().GetProperty(paramName, BindingFlags.IgnoreCase|BindingFlags.Public|BindingFlags.Instance);
+                if (property != null)
+                    param.Value = property.GetValue(entity);
+            }
             var affectRows = _sqlCommand.ExecuteNonQuery();
             return affectRows;
         }
@@ -150,5 +175,7 @@ namespace MISA.DataAccess.DatabaseAccess
             // Thực hiện đọc dữ liệu:
             return _sqlCommand.ExecuteScalar();
         }
+
+        #endregion
     }
 }

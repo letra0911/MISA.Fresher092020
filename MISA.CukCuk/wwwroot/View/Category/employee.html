@@ -109,15 +109,15 @@
                 <table class="tableFixHead" border="1" id="tbListData">
                     <thead>
                         <tr>
-                            <th>Mã nhân viên</th>
-                            <th>Tên nhân viên</th>
-                            <th>Giới tính</th>
-                            <th>Ngày sinh</th>
-                            <th>Email</th>
-                            <th>Vị trí</th>
-                            <th>Phòng ban</th>
-                            <th>Mức lương</th>
-                            <th>Tình trạng công việc</th>
+                            <th fieldName="EmployeeName">Mã nhân viên</th>
+                            <th fieldName="EmployeeName">Tên nhân viên</th>
+                            <th fieldName="GenderName">Giới tính</th>
+                            <th fieldName="DateOfBirth" format="date">Ngày sinh</th>
+                            <th fieldName="EmployeeName">Email</th>
+                            <th fieldName="EmployeeName">Vị trí</th>
+                            <th fieldName="EmployeeName">Phòng ban</th>
+                            <th fieldName="Salary">Mức lương</th>
+                            <th fieldName="EmployeeName">Tình trạng công việc</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -334,6 +334,7 @@
     </div>
     <script src="/js/lib/jquery-3.5.1.min.js"></script>
     <script src="../../js/helper/common.js"></script>
+    <script src="../../js/helper/validate.js"></script>
     <script src="/js/helper/base.js"></script>
     <script src="/js/page/employee.js"></script>
 </body>

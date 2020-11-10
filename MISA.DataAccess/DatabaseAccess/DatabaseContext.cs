@@ -11,7 +11,7 @@ namespace MISA.DataAccess.DatabaseAccess
     public class DatabaseContext<T> : IDisposable, IDatabaseContext<T>
     {
         #region DECLARE
-        readonly string _connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.166.58;Port=3306;Database=MISACukCuk_F09_NVMANH;Character Set=utf8";
+        readonly string _connectionString = "User Id=nvmanh;Password=12345678@Abc;Host=35.194.135.168;Port=3306;Database=MISACukCuk;Character Set=utf8";
         MySqlConnection _sqlConnection;
         MySqlCommand _sqlCommand;
         #endregion

@@ -14,7 +14,9 @@ namespace MISA.Common.Models
         }
         public Guid EmployeeId { get; set; }
         public string EmployeeCode { get; set; }
-        public string EmployeeName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public int? Gender { get; set; }
 
@@ -38,11 +40,16 @@ namespace MISA.Common.Models
 
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public Guid? PossitionId { get; set; }
-        public string PossitionName { get; set; }
+        public string Address { get; set; }
+        public Guid? PositionId { get; set; }
+        public string PositionName { get; set; }
         public Guid? DepartmentId { get; set; }
         public string DepartmentName { get; set; }
-        public string TaxCode { get; set; }
+        public Guid? QualificationId { get; set; }
+        public string QualificationName { get; set; }
+        public int EducationalBackground { get; set; }
+        public int MaritalStatus { get; set; }
+        public string PersonalTaxCode { get; set; }
         public double? Salary { get; set; }
         public DateTime? JoinDate { get; set; }
         public int? WorkStatus { get; set; }

@@ -84,7 +84,7 @@ namespace MISA.DataAccess
             _sqlCommand.CommandText = "Proc_InsertEmployee";
             _sqlCommand.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
             _sqlCommand.Parameters.AddWithValue("@EmployeeCode", employee.EmployeeCode);
-            _sqlCommand.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
+            _sqlCommand.Parameters.AddWithValue("@FullName", employee.FullName);
             _sqlCommand.Parameters.AddWithValue("@DateOfBirth", employee.DateOfBirth);
             _sqlCommand.Parameters.AddWithValue("@Gender", employee.Gender);
             _sqlCommand.Parameters.AddWithValue("@Email", employee.Email);
@@ -92,10 +92,10 @@ namespace MISA.DataAccess
             _sqlCommand.Parameters.AddWithValue("@IdentityDate", employee.IdentityDate);
             _sqlCommand.Parameters.AddWithValue("@IdentityNumber", employee.IdentityNumber);
             _sqlCommand.Parameters.AddWithValue("@IdentityPlace", employee.IdentityPlace);
-            _sqlCommand.Parameters.AddWithValue("@PossitionId", employee.PossitionId);
+            _sqlCommand.Parameters.AddWithValue("@PossitionId", employee.PositionId);
             _sqlCommand.Parameters.AddWithValue("@DepartmentId", employee.DepartmentId);
             _sqlCommand.Parameters.AddWithValue("@Salary", employee.Salary);
-            _sqlCommand.Parameters.AddWithValue("@TaxCode", employee.TaxCode);
+            _sqlCommand.Parameters.AddWithValue("@TaxCode", employee.PersonalTaxCode);
             _sqlCommand.Parameters.AddWithValue("@JoinDate", employee.JoinDate);
             _sqlCommand.Parameters.AddWithValue("@WorkStatus", employee.WorkStatus);
             var affectRows = _sqlCommand.ExecuteNonQuery();

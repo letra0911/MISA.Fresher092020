@@ -85,7 +85,13 @@ namespace MISA.DataAccess.DatabaseAccess
                     var value = mySqlDataReader.GetValue(i);
                     var propertyInfo = employee.GetType().GetProperty(columnName);
                     if (propertyInfo != null && value != DBNull.Value)
-                        propertyInfo.SetValue(employee, value);
+                    {
+                        if (propertyInfo.PropertyType == typeof(Boolean))
+                            propertyInfo.SetValue(employee, Convert.ToBoolean(value));
+                        else
+                            propertyInfo.SetValue(employee, value);
+                    }
+
                 }
                 employees.Add(employee);
             }
@@ -120,7 +126,7 @@ namespace MISA.DataAccess.DatabaseAccess
             foreach (MySqlParameter param in parameters)
             {
                 var paramName = param.ParameterName.Replace("@", string.Empty);
-                var property = entity.GetType().GetProperty(paramName, BindingFlags.IgnoreCase|BindingFlags.Public|BindingFlags.Instance);
+                var property = entity.GetType().GetProperty(paramName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                 if (property != null)
                     param.Value = property.GetValue(entity);
             }

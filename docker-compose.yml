@@ -3,7 +3,7 @@ networks:
   nvmanh-network:
     external: true
 services:
-  bida69:
+  misacukcuk:
     image: misacukcuk
     container_name: misacukcuk_container
     restart: always
@@ -13,4 +13,4 @@ services:
       - '9001:80'
     build:
       context: .
-      dockerfile: MISACukCuk/Dockerfile
+      dockerfile: MISA.CukCuk/Dockerfile

@@ -44,10 +44,11 @@ namespace MISA.DataAccess.DatabaseAccess
             return affectRows;
         }
 
-        public T GetById(object employeeId)
+        public T GetById(object objectId)
         {
-            _sqlCommand.CommandText = "Proc_GetEmployeeById";
-            _sqlCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            var className = typeof(T).Name;
+            _sqlCommand.CommandText = $"Proc_Get{className}ById";
+            _sqlCommand.Parameters.AddWithValue($"@{className}Id", objectId);
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())
             {
@@ -58,7 +59,12 @@ namespace MISA.DataAccess.DatabaseAccess
                     var value = mySqlDataReader.GetValue(i);
                     var propertyInfo = employee.GetType().GetProperty(columnName);
                     if (propertyInfo != null && value != DBNull.Value)
-                        propertyInfo.SetValue(employee, value);
+                    {
+                        if (propertyInfo.PropertyType == typeof(Boolean))
+                            propertyInfo.SetValue(employee, Convert.ToBoolean(value));
+                        else
+                            propertyInfo.SetValue(employee, value);
+                    }
                 }
                 return employee;
             }

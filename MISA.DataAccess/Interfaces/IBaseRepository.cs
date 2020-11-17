@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.DataAccess.Interfaces
@@ -15,6 +16,7 @@ namespace MISA.DataAccess.Interfaces
         T GetById(Guid employeeId);
         int Insert(T employee);
         int Update(T employee);
-        int Delete(Guid id);
+        int Delete(object id);
+        bool CheckDuplicate(T entity,PropertyInfo property, bool isAddNew = true);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using MISA.Common.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Resources;
 
@@ -12,7 +14,11 @@ namespace MISA.Common.Models
         {
             EmployeeId = Guid.NewGuid();
         }
+        [Key]
         public Guid EmployeeId { get; set; }
+
+        [Unique]
+        [DisplayName("Mã nhân viên")]
         public string EmployeeCode { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -39,6 +45,9 @@ namespace MISA.Common.Models
         }
 
         public string Email { get; set; }
+
+        [Unique]
+        [DisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public Guid? PositionId { get; set; }
@@ -73,6 +82,8 @@ namespace MISA.Common.Models
             }
         }
 
+        [Unique]
+        [DisplayName("Số chứng minh thư")]
         public string IdentityNumber { get; set; }
         public DateTime? IdentityDate { get; set; }
         public string IdentityPlace { get; set; }

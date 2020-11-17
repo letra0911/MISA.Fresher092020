@@ -16,7 +16,7 @@ namespace MISA.Bussiness.Interfaces
 
         T GetById(Guid employeeId);
         ServiceResponse Insert(T employee);
-        int Update(T employee);
-        int Delete(Guid id);
+        ServiceResponse Update(T employee);
+        int Delete(object id);
     }
 }

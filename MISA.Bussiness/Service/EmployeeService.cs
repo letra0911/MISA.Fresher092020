@@ -20,27 +20,27 @@ namespace MISA.Bussiness.Service
             return _employeeRepository.CheckEmployeeByCode(employeeCode);
         }
 
-        protected override bool Validate(Employee entity)
-        {
-            var isValid = true;
-            // Check trùng mã:
-            var isValidExitsCode =  CheckEmployeeByCode(entity.EmployeeCode);
-            if (isValidExitsCode)
-            {
-                isValid = false;
-                validateErrorResponseMsg.Add("Mã bị trùng 1");
-            }
+        //protected override bool Validate(Employee entity)
+        //{
+        //    var isValid = true;
+        //    // Check trùng mã:
+        //    var isValidExitsCode =  CheckEmployeeByCode(entity.EmployeeCode);
+        //    if (isValidExitsCode)
+        //    {
+        //        isValid = false;
+        //        validateErrorResponseMsg.Add("Mã bị trùng 1");
+        //    }
 
-            // Check trùng số chứng minh thư:
-            var isValidExitsMobile = CheckEmployeeByCode(entity.EmployeeCode);
-            if (isValidExitsMobile)
-            {
-                isValid = false;
-                validateErrorResponseMsg.Add("Bị trùng số điện thoại");
-            }
+        //    // Check trùng số chứng minh thư:
+        //    var isValidExitsMobile = CheckEmployeeByCode(entity.EmployeeCode);
+        //    if (isValidExitsMobile)
+        //    {
+        //        isValid = false;
+        //        validateErrorResponseMsg.Add("Bị trùng số điện thoại");
+        //    }
             
-            return isValid;
-        }
+        //    return isValid;
+        //}
 
     }
 }

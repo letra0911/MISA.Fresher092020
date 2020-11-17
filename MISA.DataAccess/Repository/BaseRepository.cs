@@ -1,6 +1,7 @@
 ﻿using MISA.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.DataAccess.Repository
@@ -13,9 +14,14 @@ namespace MISA.DataAccess.Repository
             _databaseContext = databaseContext;
         }
 
-        public int Delete(Guid id)
+        public bool CheckDuplicate(T entity,PropertyInfo property, bool isAddNew = true)
         {
-            return _databaseContext.Delete(id);
+            return _databaseContext.CheckDuplicate(entity, property, isAddNew);
+        }
+
+        public int Delete(object id)
+        {
+            return _databaseContext.DeleteById(id);
         }
 
         public IEnumerable<T> Get()

@@ -127,7 +127,12 @@ namespace MISA.DataAccess
             throw new NotImplementedException();
         }
 
-        public int Delete(object id)
+        public int DeleteById(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckDuplicate(Employee entity, System.Reflection.PropertyInfo property, bool isAddNew = true)
         {
             throw new NotImplementedException();
         }

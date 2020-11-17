@@ -57,15 +57,23 @@ namespace MISA.CukCuk.Api
         }
 
         // PUT api/<EmployeesApi>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public IActionResult Put([FromBody] T entity)
         {
+            var serviceResponse = _baseService.Update(entity);
+            var affectRows = serviceResponse.Data != null ? ((int)serviceResponse.Data) : 0;
+            if (affectRows > 0)
+                return Ok(affectRows);
+            else
+                return BadRequest(serviceResponse);
         }
 
         // DELETE api/<EmployeesApi>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete([FromRoute]string id)
         {
+            var affectRows = _baseService.Delete(id);
+            return Ok(affectRows);
         }
 
     }

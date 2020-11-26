@@ -6274,6 +6274,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
             "D:\\PRIVATE\\GitHub\\MISA.Fresher092020\\MISA.Common\\MISA.Common.csproj": {
               "projectPath": "D:\\PRIVATE\\GitHub\\MISA.Fresher092020\\MISA.Common\\MISA.Common.csproj"
@@ -6289,6 +6290,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MySql.Data": {
             "target": "Package",
@@ -6314,7 +6316,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

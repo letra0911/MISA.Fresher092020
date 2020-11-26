@@ -22,7 +22,27 @@ namespace MISA.Common.Models
         public string CustomerCode { get; set; }
         public string FullName { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        public int? Gender { get; set; }
 
+        public string GenderName
+        {
+            get
+            {
+                switch (Gender)
+                {
+                    case 0:
+                        return "Nữ";
+                    case 1:
+                        return "Nam";
+                    case 2:
+                        return "Khác";
+                    default:
+                        return "Không xác định";
+                }
+            }
+        }
+        public string CompanyName { get; set; }
+        public string CompanyTaxCode { get; set; }
         [Unique]
         [DisplayName("Số điện thoại di động")]
         public string PhoneNumber { get; set; }

@@ -76,5 +76,12 @@ namespace MISA.CukCuk.Api
             return Ok(affectRows);
         }
 
+        [HttpDelete()]
+        public IActionResult DeleteMultiRecord([FromQuery] string id)
+        {
+            var affectRows = _baseService.Delete(id);
+            return Ok(affectRows);
+        }
+
     }
 }

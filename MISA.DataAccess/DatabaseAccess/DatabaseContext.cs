@@ -37,6 +37,9 @@ namespace MISA.DataAccess.DatabaseAccess
             var entityName = typeof(T).Name;
             _sqlCommand.Parameters.Clear();
             _sqlCommand.CommandText = $"Proc_Delete{entityName}ById";
+            _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            if (_sqlConnection.State == System.Data.ConnectionState.Closed)
+                _sqlConnection.Open();
             //_sqlCommand.Parameters.AddWithValue($"@{entityName}Id", id);
             MySqlCommandBuilder.DeriveParameters(_sqlCommand);
             if (_sqlCommand.Parameters.Count > 0)
@@ -51,6 +54,9 @@ namespace MISA.DataAccess.DatabaseAccess
         {
             var className = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{className}ById";
+            _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            if (_sqlConnection.State == System.Data.ConnectionState.Closed)
+                _sqlConnection.Open();
             _sqlCommand.Parameters.AddWithValue($"@{className}Id", objectId);
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())
@@ -79,11 +85,14 @@ namespace MISA.DataAccess.DatabaseAccess
             var employees = new List<T>();
             var className = typeof(T).Name;
             _sqlCommand.CommandText = $"Proc_Get{className}s";
+            _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            if (_sqlConnection.State == System.Data.ConnectionState.Closed)
+                _sqlConnection.Open();
             // Thực hiện đọc dữ liệu:
             MySqlDataReader mySqlDataReader = _sqlCommand.ExecuteReader();
             while (mySqlDataReader.Read())
             {
-                var employee = Activator.CreateInstance<T>();
+                var entity = Activator.CreateInstance<T>();
                 //employee.EmployeeId = mySqlDataReader.GetGuid(0);
                 //employee.EmployeeCode = mySqlDataReader.GetString(1);
                 //employee.FullName = mySqlDataReader.GetString(2);
@@ -92,17 +101,17 @@ namespace MISA.DataAccess.DatabaseAccess
                 {
                     var columnName = mySqlDataReader.GetName(i);
                     var value = mySqlDataReader.GetValue(i);
-                    var propertyInfo = employee.GetType().GetProperty(columnName);
+                    var propertyInfo = entity.GetType().GetProperty(columnName);
                     if (propertyInfo != null && value != DBNull.Value)
                     {
                         if (propertyInfo.PropertyType == typeof(Boolean))
-                            propertyInfo.SetValue(employee, Convert.ToBoolean(value));
+                            propertyInfo.SetValue(entity, Convert.ToBoolean(value));
                         else
-                            propertyInfo.SetValue(employee, value);
+                            propertyInfo.SetValue(entity, value);
                     }
 
                 }
-                employees.Add(employee);
+                employees.Add(entity);
             }
             // 1. Kết nối với Database:
             // 2. Thực thi command lấy dữ liệu:
@@ -115,6 +124,9 @@ namespace MISA.DataAccess.DatabaseAccess
             var entityName = typeof(T).Name;
             _sqlCommand.Parameters.Clear();
             _sqlCommand.CommandText = $"Proc_Insert{entityName}";
+            _sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            if (_sqlConnection.State == System.Data.ConnectionState.Closed)
+                _sqlConnection.Open();
             MySqlCommandBuilder.DeriveParameters(_sqlCommand);
             var parameters = _sqlCommand.Parameters;
             var properties = typeof(T).GetProperties();

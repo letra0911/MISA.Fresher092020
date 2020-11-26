@@ -10,6 +10,7 @@ namespace MISA.Common.Models
 {
     public partial class Employee
     {
+        public string _name;
         public Employee()
         {
             EmployeeId = Guid.NewGuid();
